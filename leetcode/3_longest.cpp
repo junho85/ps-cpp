@@ -10,7 +10,7 @@ class Solution {
 public:
     unsigned long get_length_of_not_repeating_character_substring(string s) {
         set<char> tmp;
-        for (int i=0; i<s.size(); i++) {
+        for (unsigned long i=0; i<s.size(); i++) {
 //            cout << s[i] << endl;
             auto ret = tmp.insert(s[i]);
             if (ret.second == false) {
@@ -26,18 +26,18 @@ public:
         }
 
         // Runtime: 428ms, faster than 2.88% of C++ online submissions.
-        int max = 0;
+        unsigned long max = 0;
         for (int i=0; i<s.size(); i++) {
-            int ret = get_length_of_not_repeating_character_substring(s.substr(i));
+            unsigned long ret = get_length_of_not_repeating_character_substring(s.substr(i));
             if (ret > max) {
                 max = ret;
             }
             if (s.size() - i < max) {
-                return max;
+                return (int)max;
             }
         }
 
-        return max;
+        return (int)max;
     }
 };
 
@@ -46,7 +46,7 @@ int main() {
 
     // test
     string test_str = string("abcdaefg").substr(3);
-    int ret = s.get_length_of_not_repeating_character_substring(test_str);
+    unsigned long ret = s.get_length_of_not_repeating_character_substring(test_str);
     assert(test_str == "daefg");
     assert(ret == 5);
 
