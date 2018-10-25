@@ -35,17 +35,61 @@ public:
     }
 
     string longestPalindrome(string s) {
-        // get substrings from longest
-        for (unsigned long i=s.size(); i>=1; i--) {
-            set<string> substrings = get_substrings_by_size(s, i);
+        unsigned long length = s.size();
 
-            for (set<string>::iterator it = substrings.begin(); it != substrings.end(); ++it) {
-                if (is_palindrome(*it)) {
-                    return *it;
+        if (length == 0) {
+            return "";
+        }
+
+        string palindrome = s.substr(0, 1);
+
+        for (int i=0; i < length - 1; i++) {
+            // check from 2 pair
+            if (i < length - 1 and s[i] == s[i+1]) {
+                string tmp_palindrome = s.substr(i, 2);
+
+                for (int j = 1; j < length; j++) {
+                    // check range
+                    if (i - j < 0 or i + 1 + j > length - 1) {
+                        break;
+                    }
+
+                    // check palindrome
+                    if (s[i - j] == s[i + 1 + j]) {
+                        tmp_palindrome = s.substr(i - j, j * 2 + 2);
+                    } else {
+                        break;
+                    }
+                }
+                if (tmp_palindrome.size() > palindrome.size()) {
+                    palindrome = tmp_palindrome;
                 }
             }
+
+            // check 3
+            if (i < length - 2 and s[i] == s[i+2]) {
+                string tmp_palindrome = s.substr(i, 3);
+                for (int j = 0; j < length; j++) {
+                    // check range
+                    if (i - j < 0 or i + 2 + j > length - 1) {
+                        break;
+                    }
+
+                    // check palindrome
+                    if (s[i - j] == s[i + 2 + j]) {
+                        tmp_palindrome = s.substr(i - j, j * 2 + 3);
+                    } else {
+                        break;
+                    }
+
+                }
+                if (tmp_palindrome.size() > palindrome.size()) {
+                    palindrome = tmp_palindrome;
+                }
+
+            }
         }
-        return "";
+        return palindrome;
     }
 };
 
@@ -71,15 +115,24 @@ int main() {
     start = clock();
 
     // longestPalindrome
-    assert(solution.longestPalindrome("babad") == "bab" or solution.longestPalindrome("babad") == "aba");
+    string result1 = solution.longestPalindrome("babad");
+    assert(result1 == "bab" or result1 == "aba");
+    
     assert(solution.longestPalindrome("cbbd") == "bb");
     assert(solution.longestPalindrome("a") == "a");
     assert(solution.longestPalindrome("ac") == "a");
-    assert(solution.longestPalindrome("bb") == "bb");
+
+    string result5 = solution.longestPalindrome("bb");
+    assert(result5 == "bb");
+
     assert(solution.longestPalindrome("abcda") == "a");
-    cout << solution.longestPalindrome(
-            "rgczcpratwyqxaszbuwwcadruayhasynuxnakpmsyhxzlnxmdtsqqlmwnbxvmgvllafrpmlfuqpbhjddmhmbcgmlyeypkfpreddyencsdmgxysctpubvgeedhurvizgqxclhpfrvxggrowaynrtuwvvvwnqlowdihtrdzjffrgoeqivnprdnpvfjuhycpfydjcpfcnkpyujljiesmuxhtizzvwhvpqylvcirwqsmpptyhcqybstsfgjadicwzycswwmpluvzqdvnhkcofptqrzgjqtbvbdxylrylinspncrkxclykccbwridpqckstxdjawvziucrswpsfmisqiozworibeycuarcidbljslwbalcemgymnsxfziattdylrulwrybzztoxhevsdnvvljfzzrgcmagshucoalfiuapgzpqgjjgqsmcvtdsvehewrvtkeqwgmatqdpwlayjcxcavjmgpdyklrjcqvxjqbjucfubgmgpkfdxznkhcejscymuildfnuxwmuklntnyycdcscioimenaeohgpbcpogyifcsatfxeslstkjclauqmywacizyapxlgtcchlxkvygzeucwalhvhbwkvbceqajstxzzppcxoanhyfkgwaelsfdeeviqogjpresnoacegfeejyychabkhszcokdxpaqrprwfdahjqkfptwpeykgumyemgkccynxuvbdpjlrbgqtcqulxodurugofuwzudnhgxdrbbxtrvdnlodyhsifvyspejenpdckevzqrexplpcqtwtxlimfrsjumiygqeemhihcxyngsemcolrnlyhqlbqbcestadoxtrdvcgucntjnfavylip")
-         << endl;
+    assert(solution.longestPalindrome("abqgjjgqab") == "qgjjgq");
+    assert(solution.longestPalindrome("") == "");
+
+    cout << "=====" << endl;
+    string result8 = solution.longestPalindrome(
+            "rgczcpratwyqxaszbuwwcadruayhasynuxnakpmsyhxzlnxmdtsqqlmwnbxvmgvllafrpmlfuqpbhjddmhmbcgmlyeypkfpreddyencsdmgxysctpubvgeedhurvizgqxclhpfrvxggrowaynrtuwvvvwnqlowdihtrdzjffrgoeqivnprdnpvfjuhycpfydjcpfcnkpyujljiesmuxhtizzvwhvpqylvcirwqsmpptyhcqybstsfgjadicwzycswwmpluvzqdvnhkcofptqrzgjqtbvbdxylrylinspncrkxclykccbwridpqckstxdjawvziucrswpsfmisqiozworibeycuarcidbljslwbalcemgymnsxfziattdylrulwrybzztoxhevsdnvvljfzzrgcmagshucoalfiuapgzpqgjjgqsmcvtdsvehewrvtkeqwgmatqdpwlayjcxcavjmgpdyklrjcqvxjqbjucfubgmgpkfdxznkhcejscymuildfnuxwmuklntnyycdcscioimenaeohgpbcpogyifcsatfxeslstkjclauqmywacizyapxlgtcchlxkvygzeucwalhvhbwkvbceqajstxzzppcxoanhyfkgwaelsfdeeviqogjpresnoacegfeejyychabkhszcokdxpaqrprwfdahjqkfptwpeykgumyemgkccynxuvbdpjlrbgqtcqulxodurugofuwzudnhgxdrbbxtrvdnlodyhsifvyspejenpdckevzqrexplpcqtwtxlimfrsjumiygqeemhihcxyngsemcolrnlyhqlbqbcestadoxtrdvcgucntjnfavylip");
+    assert(result8 == "qgjjgq");
 
     duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;
 
