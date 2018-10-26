@@ -1,53 +1,38 @@
-// https://leetcode.com/problems/two-sum/submissions/
-
 #include <vector>
 #include <iostream>
 
 using namespace std;
 
 class Solution {
-private:
-    /**
-     *
-     * @param nums
-     * @param index
-     * @param target
-     * @return 0 not found
-     * others - index
-     */
-    int find(vector<int>& nums, int index, int target) {
-        int current = nums[index];
-        for (int i=index + 1; i<nums.size(); i++) {
-            if (current + nums[i] == target) {
-                return i;
-            }
-        }
-        return 0;
-    }
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         vector<int> answer(2);
 
-        for (int i=0; i<nums.size(); i++) {
-            int ret = find(nums, i, target);
-            if (ret != 0) {
-                answer[0] = i;
-                answer[1] = ret;
-                break;
+        int right = nums[1];
+
+        unsigned long length = nums.size();
+        for (int i = 0; i < length; i++) {
+            int left = nums[i];
+
+            for (int j=i+1; j<length; j++) {
+                if (left + nums[j] == target) {
+                    answer[0] = i;
+                    answer[1] = j;
+                    return answer;
+                }
             }
         }
-
-        return answer;
     }
 };
 
 int main() {
-    Solution solution;
+//    vector<int> nums({2,7,11,15});
+    vector<int> nums({3,2,4});
 
-    vector<int> nums({2,7,11,15});
+    Solution solution = Solution();
+//    vector<int> answer = solution.twoSum(nums, 9);
+    vector<int> answer = solution.twoSum(nums, 6);
 
-    vector<int> answer = solution.twoSum(nums, 9);
     cout << answer[0] << ":" << answer[1] << endl;
-
     return 0;
 }
