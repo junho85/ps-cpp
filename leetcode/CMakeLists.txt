@@ -7,3 +7,5 @@ add_executable(5_longest_palindromic_substring_timeout 5_longest_palindromic_sub
 add_executable(5_longest_palindromic_substring 5_longest_palindromic_substring.cpp)
 add_executable(6_zigzag_conversion 6_zigzag_conversion.cpp)
 add_executable(7_reverse_integer 7_reverse_integer.cpp)
+add_executable(8_string_to_integer 8_string_to_integer.cpp)
+add_executable(9_palindrome_number 9_palindrome_number.cpp)
