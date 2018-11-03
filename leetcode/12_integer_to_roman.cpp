@@ -48,7 +48,7 @@ public:
                 ten = "X";
             }
 
-            string roman = "";
+            string roman;
 
             int current_num = num_string[i] - 48; // character to int
             if (current_num >= 1 and current_num <= 3) {
