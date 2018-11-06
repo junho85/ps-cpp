@@ -13,3 +13,5 @@ add_executable(10_regular_expression_matching 10_regular_expression_matching.cpp
 add_executable(11_container_with_most_water 11_container_with_most_water.cpp)
 add_executable(12_integer_to_roman 12_integer_to_roman.cpp)
 add_executable(13_roman_to_integer 13_roman_to_integer.cpp)
+add_executable(14_longest_common_prefix 14_longest_common_prefix.cpp)
+add_executable(15_3sum 15_3sum.cpp)
