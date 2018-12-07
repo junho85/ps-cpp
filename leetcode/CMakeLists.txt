@@ -43,5 +43,6 @@ add_executable(53_maximum_subarray 53_maximum_subarray.cpp)
 add_executable(58_length_of_last_word 58_length_of_last_word.cpp)
 add_executable(66_plus_one 66_plus_one.cpp)
 add_executable(67_add_binary 67_add_binary.cpp)
+add_executable(69_sqrt 69_sqrt.cpp)
 
 add_subdirectory(test)
