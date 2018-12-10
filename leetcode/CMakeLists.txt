@@ -46,5 +46,6 @@ add_executable(67_add_binary 67_add_binary.cpp)
 add_executable(69_sqrt 69_sqrt.cpp)
 add_executable(70_climbing_stairs 70_climbing_stairs.cpp)
 add_executable(83_remove_duplicates_from_sorted_list 83_remove_duplicates_from_sorted_list.cpp)
+add_executable(88_merge_sorted_array 88_merge_sorted_array.cpp)
 
 add_subdirectory(test)
