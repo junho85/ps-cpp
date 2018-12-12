@@ -29,13 +29,21 @@ public:
                 is_up = false;
             }
 
-            auto a_last = a.back();
-            if (a_last == '1') current++;
-            a.pop_back();
+            char a_last = '0';
+            if (!a.empty()) {
+                a_last = a.back();
 
-            auto b_last = b.back();
-            if (b_last == '1') current++;
-            b.pop_back();
+                if (a_last == '1') current++;
+                a.pop_back();
+            }
+
+            char b_last = '0';
+            if (!b.empty()) {
+                b_last = b.back();
+
+                if (b_last == '1') current++;
+                b.pop_back();
+            }
 
             if (current >= 2) {
                 is_up = true;
@@ -58,7 +66,6 @@ public:
 };
 
 int main() {
-
     Solution solution = Solution();
 
     assert(solution.addBinary("11", "1") == "100");
