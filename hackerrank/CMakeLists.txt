@@ -1,0 +1,1 @@
+add_executable(04.a-very-big-sum 04.a-very-big-sum.cpp)
